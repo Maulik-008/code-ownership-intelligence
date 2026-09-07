@@ -2,24 +2,30 @@
 
 Don't read a file top to bottom hoping understanding shows up. Ask questions, then go find the answer. This is the repeatable method.
 
-## The eight questions
+## The eight steps
 
 Work through these for anything that matters. Skip ones that clearly don't apply — this is a checklist to think with, not a form to fill out.
 
 ### Find
-Where does this behavior actually start? The entry point — a route, a button handler, a queue consumer, a scheduled job.
+Where does this behavior actually start? The entry point — a route, a button handler, a queue consumer, a scheduled job, a CLI command.
 
 ### Follow
-Once it starts, where does the data (or control) go? Trace it forward: function → function → service → database → response. Don't stop at the first hop.
+Once it starts, where does the data (or control) go? Trace it forward:
+
+```
+Entry point → Function → Service → Business logic → Database / API → Side effect → Response
+```
+
+Don't stop at the first function.
 
 ### Connect
 What else depends on this? Who calls this function, imports this module, reads this table, listens for this event? A change here can break something that looks unrelated.
 
 ### Explain
-Why does this logic exist? Not just what it does — why it does it this way. Look for the business reason, not just the mechanism.
+First: what does this do? Then, separately: why does it exist? Look for the business reason, not just the mechanism.
 
 ### Challenge
-What happens if the normal condition is false? What if the list is empty, the user is missing a field, the network call fails, the amount is zero or negative? This is where real bugs and real risks live.
+What happens if the normal condition is false? Missing data, empty values, invalid input, permission failure, network or database failure, a duplicate request, an unexpected status, a zero or negative value, a partial success, a retry, a timeout, stale data. This is where real bugs and real risks live. (See [understanding-tools.md](understanding-tools.md) for the fuller normal/failure/edge/unexpected pattern.)
 
 ### Compare
 How did this work *before*? Relevant any time there's a change to review — a diff, a commit, a PR. Old behavior is the baseline everything else is measured against.
@@ -30,43 +36,72 @@ Can you actually confirm what you think is true? Check the code, the tests, the 
 ### Remember
 Strip away everything else — what's the one thing a developer actually needs to keep in their head about this? If you can't answer this, you haven't finished the research.
 
-## Where to look (research sources)
+## Think like the developer who wrote it
 
-Use whichever of these actually matter for the question at hand. Don't inspect everything blindly — follow the questions above and let them tell you where to look.
-
-- Source code (the real behavior, always wins over assumptions)
-- Tests (what the author believed was worth protecting)
-- Types / interfaces (the shape of the contract)
-- API definitions (what the outside world can rely on)
-- Database schema (what's actually stored, and what's required vs optional)
-- Configuration and environment variable usage (what changes behavior per environment)
-- Documentation (what someone intended to communicate — may be stale, treat with caution)
-- Git history, commit messages, and diffs (why something was done, when it changed, who touched it last)
-- Related implementations elsewhere in the codebase (is this pattern used consistently or is this one different?)
-- Callers and dependents (who relies on this)
-- Error handling (what the author expected could go wrong)
-- Logs, if available (what actually happens at runtime)
-
-## Why decisions exist
-
-For any piece of code that matters, try to answer this chain:
+For code whose reasoning matters, work through this chain instead of stopping at "what it does":
 
 ```
 What?
  ↓
+How?
+ ↓
 Why?
+ ↓
+What other choices were possible?
+ ↓
+Why was this choice used instead?
  ↓
 Who depends on it?
  ↓
 What happens if it changes?
  ↓
+What must stay true?
+ ↓
 What should I remember?
 ```
 
-If you can back the "why" up with evidence — a comment, a test name, a commit message, a doc — say exactly where it came from. This makes the explanation checkable instead of just plausible.
+## Recover lost design thinking
 
-If you cannot confirm the reason, say so plainly:
+AI-written code can work perfectly while the human has no idea why it's shaped the way it is. Try to recover that context instead of leaving it lost:
 
-> "The code suggests this may exist for X, but the reason cannot be confirmed."
+- Older implementations of the same thing
+- Git history and commit messages
+- Tests (what the author thought was worth protecting)
+- Comments
+- Related or similar features elsewhere in the codebase
+- Old conditions that look oddly specific
+- Previous bug fixes touching this area
+- Existing patterns the codebase already follows
 
-**Never invent a reason and present it as fact.** A wrong confident answer is worse than an honest "unconfirmed" — it teaches the human something false about code they're about to own.
+Try to answer: *"Why was this decision made?"* and, where possible, *"What problem was this decision trying to avoid?"* If the answer genuinely can't be found, say so — don't fill the gap with a guess.
+
+## Where to look (evidence sources)
+
+Use whichever of these actually matter for the question at hand. Don't inspect everything blindly — let the questions above tell you where to look.
+
+- Source code (the real behavior, always wins over assumptions)
+- Tests
+- Types / interfaces
+- API definitions
+- Database schema
+- Configuration and environment variable usage
+- Documentation (may be stale — treat with caution)
+- Git history, commit messages, and diffs
+- Related implementations elsewhere in the codebase
+- Callers and dependents
+- Error handling
+- Logs, if available
+
+## Say how sure you are
+
+Never present a guess as a fact. Label what you find as one of three things:
+
+- **Confirmed** — the code, tests, or history clearly show it.
+- **Likely** — the code strongly suggests it, but nothing directly confirms it.
+- **Unknown** — there isn't enough evidence either way.
+
+When you can back a "why" up with evidence, name exactly where it came from (a test name, a commit message, a comment, a doc). When you can't, say so plainly:
+
+> "The code suggests this may exist for X, but I can't confirm it."
+
+A wrong confident answer is worse than an honest "unconfirmed" — it teaches the human something false about code they're about to own.

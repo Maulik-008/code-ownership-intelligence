@@ -4,57 +4,80 @@ Before creating anything, ask: **"Will a file actually help the human understand
 
 Prefer **small + useful + memorable** over **large + complete + unread**.
 
+## Scale to the size of the ask
+
+Don't run the full process on every request. Match the depth to what's actually at stake.
+
+**Small request** (one function, a small change, a simple question):
+```
+Simple explanation
++ Important flow
++ One or two things to remember
+```
+
+**Medium request** (a feature, a module, a normal change):
+```
+Explanation
++ Flow
++ Rules
++ Risks
++ Memory
++ Ownership questions (if something is genuinely easy to get wrong)
+```
+
+**Large or risky change** (money, auth, shared code, a rewrite):
+```
+Scope
++ Architecture / mental map
++ Main flows
++ Business rules
++ Decisions and why
++ Normal / failure / edge scenarios
++ Before / after
++ Impact (what else is affected)
++ Risks
++ Memory
++ Full human ownership check
+```
+
+Go deeper only because the code or the change actually needs it — not because the template has more boxes to fill.
+
 ## 1. Quick answer (no file) — default choice
 
-Use for most requests: a single function, a small change, a specific question. Just answer in chat, plainly. Include the important flow, the relevant rule, and anything to remember, in a few sentences or a short list.
+Use for most requests. Just answer in chat, plainly. Include the important flow, the relevant rule, and anything to remember, in a few sentences or a short list.
 
 ## 2. Markdown report
 
 Use when the information is mostly explanation, rules, relationships, or a before/after story that's too long for chat — and the human will likely want to come back to it.
 
-Filename convention:
-- `CODEBASE-UNDERSTANDING.md` for a general "explain this" / before-change deep dive
-- `CHANGE-UNDERSTANDING.md` for an after-change review
+Filename convention, pick the one that matches the request:
+- `CODEBASE-UNDERSTANDING.md` — general "explain this area" / before-change deep dive
+- `CHANGE-UNDERSTANDING.md` — after-change review
+- `FEATURE-UNDERSTANDING.md` — one feature, entry point to result
+- `FLOW-UNDERSTANDING.md` — one specific process traced end to end
 
-Skeleton:
+Skeleton (use the [Final Answer Structure](#final-answer-structure) headings, omitting whatever doesn't apply):
 
 ```markdown
 # <Area / Feature / Change> — Understanding
 
-## What was investigated
-<scope, and what was and wasn't looked at>
-
-## Simple explanation
-<what it does, in plain words>
-
-## Important flow
-<the main path through the code — a Mermaid diagram if it helps>
-
-## Business rules
-<the rules that must keep holding true>
-
-## Key decisions and why
-<what evidence backs each "why" — or "can't confirm" where it doesn't>
-
-## Risks / edge cases
-<what could go wrong, and under what conditions>
-
-## What changed (if applicable)
-<old vs new, and anything that may have quietly broken>
-
+## What I Looked At
+## Simple Understanding
+## Mental Map / Main Flow
+## Important Rules
+## Why These Decisions Exist
+## Normal / Failure / Edge Scenarios
+## What Could Go Wrong
+## What Changed
+## What Is Easy to Miss
 ## Remember This
-- <short, concrete, memorable facts — see the memory card format below>
-
-## You should understand these before moving on
-1. ...
-2. ...
+## You Should Understand These Before Moving On
+## Can I Own This?
 ```
-
-Leave out sections that don't apply — don't pad the template just to fill it.
 
 ## 3. HTML report
 
-Use only when the area is genuinely complex and a visual structure — architecture, several related flows, side-by-side before/after — would meaningfully beat plain text. This is the exception, not the default.
+Use only when the area is genuinely complex and visual structure — architecture, several related flows, side-by-side before/after — would meaningfully beat plain text. This is the exception, not the default.
 
 Keep it a single self-contained file: inline `<style>`, no build step, no external dependencies except Mermaid if a diagram is included (load it from a CDN `<script>` tag). Use `<details>`/`<summary>` for collapsible sections instead of custom JS where possible.
 
@@ -135,7 +158,7 @@ What else is affected: <callers, workflows, edge cases>
 
 ## 6. Memory card ("Remember This")
 
-Use for any complex area, regardless of which other formats are used. This is often the single most valuable thing produced — keep it short.
+Use for any complex area, regardless of which other formats are used. Often the single most valuable thing produced — keep it to five bullets or fewer (see [human-ownership.md](human-ownership.md)).
 
 ```markdown
 ## Remember This
@@ -147,4 +170,33 @@ Use for any complex area, regardless of which other formats are used. This is of
 - Failed payments can still have a transaction record.
 ```
 
-Five bullets or fewer, ideally. If it's longer than that, it's not a memory card anymore — it's a report, and the important parts will get lost.
+## 7. Memory document (rare — long-lived areas only)
+
+For an area the human will keep coming back to over weeks or months — not for a one-off task — a standing memory document can be worth creating:
+
+```text
+CODEBASE-MEMORY.md
+```
+
+Contents: architecture, important rules, important flows, dangerous areas, important decisions (with evidence), easy-to-forget facts. Update it rather than recreating it once it exists. Do not create this for a small or one-time task — it earns its place only when the human is clearly going to live in this area for a long time.
+
+## Final Answer Structure
+
+When a detailed response is warranted, use this order and skip whatever doesn't apply:
+
+```
+## What I Looked At
+## Simple Understanding
+## Mental Map / Main Flow
+## Important Rules
+## Why These Decisions Exist
+## Normal / Failure / Edge Scenarios
+## What Could Go Wrong
+## What Changed                              (if applicable)
+## What Is Easy to Miss
+## Remember This
+## You Should Understand These Before Moving On
+## Can I Own This?
+```
+
+Never include an empty section. Never stretch a small answer to fill the template.
