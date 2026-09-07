@@ -1,0 +1,9 @@
+{
+  "name": "code-ownership-intelligence",
+  "description": "Helps developers understand, question, and own code that an AI agent is about to change or just changed — before/after change reviews, flow tracing, and human ownership checks.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Maulik Joshi"
+  },
+  "license": "MIT"
+}

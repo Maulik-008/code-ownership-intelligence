@@ -1,0 +1,15 @@
+{
+  "name": "code-ownership-intelligence",
+  "owner": {
+    "name": "Maulik Joshi"
+  },
+  "description": "A human-understanding layer around AI coding agents: before/after change reviews, flow tracing, and ownership checks.",
+  "plugins": [
+    {
+      "name": "code-ownership-intelligence",
+      "description": "Helps developers understand, question, and own code that an AI agent is about to change or just changed.",
+      "source": ".",
+      "version": "1.0.0"
+    }
+  ]
+}
