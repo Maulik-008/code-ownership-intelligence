@@ -36,7 +36,7 @@ Can you actually confirm what you think is true? Check the code, the tests, the 
 ### Remember
 Strip away everything else — what's the one thing a developer actually needs to keep in their head about this? If you can't answer this, you haven't finished the research.
 
-## Decision memory
+## Decision record
 
 AI-written code can work perfectly while the human has no idea why it's shaped the way it is. For a decision whose reasoning actually matters — not every line, just the ones a future change could get wrong — recover it in this shape:
 

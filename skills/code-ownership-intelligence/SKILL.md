@@ -84,7 +84,6 @@ Most requests do **not** need a file. Ask: *"Will a file actually help more than
 - One process to trace → a **Mermaid** diagram.
 - A large or tangled area, or something worth revisiting → a **Markdown** report.
 - Genuinely complex, visual structure would clearly help → one self-contained **HTML** file (rare).
-- A long-lived area worth remembering across many future sessions → a standing **memory document** (rare — not for one-off tasks).
 
 **Small + useful + memorable beats large + complete + unread.**
 

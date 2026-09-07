@@ -21,7 +21,7 @@ Explanation
 + Flow
 + Rules
 + Risks
-+ Memory
++ What to remember
 + Ownership questions (if something is genuinely easy to get wrong)
 ```
 
@@ -31,12 +31,12 @@ Scope
 + Architecture / mental map
 + Main flows
 + Business rules
-+ Decisions and why (Decision Memory where it matters)
++ Decisions and why (Decision Record where it matters)
 + Normal / failure / edge scenarios
 + Before / after, and whether AI changed more than was asked
 + Impact (what else is affected)
 + Risks, and what's still unknown
-+ Memory
++ What to remember
 + Full human ownership check, explain-it-back for the core flow
 ```
 
@@ -157,7 +157,7 @@ IMPACT
 What else is affected: <callers, workflows, edge cases>
 ```
 
-## 6. Memory card ("Remember This")
+## 6. "Remember This" card
 
 Use for any complex area, regardless of which other formats are used. Often the single most valuable thing produced — keep it to five bullets or fewer (see [human-ownership.md](human-ownership.md)).
 
@@ -170,16 +170,6 @@ Use for any complex area, regardless of which other formats are used. Often the 
 - Do not update payment status directly from the UI.
 - Failed payments can still have a transaction record.
 ```
-
-## 7. Memory document (rare — long-lived areas only)
-
-For an area the human will keep coming back to over weeks or months — not for a one-off task — a standing memory document can be worth creating:
-
-```text
-CODEBASE-MEMORY.md
-```
-
-Contents: architecture, important rules, important flows, dangerous areas, important decisions (with evidence), easy-to-forget facts. Update it rather than recreating it once it exists. Do not create this for a small or one-time task — it earns its place only when the human is clearly going to live in this area for a long time.
 
 ## Final Answer Structure
 

@@ -77,7 +77,7 @@ Wait for the actual answer before moving on. If they name the real risk (status 
 
 Use this selectively, for things like: important architecture, business rules, risky logic, shared code, a non-obvious assumption, a genuinely difficult flow, an AI-generated change, behavior that would be easy to break, or a decision that matters for future maintenance. **Do not turn every small task into a quiz.** Most requests should just get a clear, direct answer.
 
-## Memory: five things, not fifty
+## What to remember: five things, not fifty
 
 The point isn't to make the human remember every file or function — it's to make them remember the handful of ideas that actually matter. For any important area, the shape to think in is:
 
