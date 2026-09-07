@@ -31,13 +31,13 @@ Scope
 + Architecture / mental map
 + Main flows
 + Business rules
-+ Decisions and why
++ Decisions and why (Decision Memory where it matters)
 + Normal / failure / edge scenarios
-+ Before / after
++ Before / after, and whether AI changed more than was asked
 + Impact (what else is affected)
-+ Risks
++ Risks, and what's still unknown
 + Memory
-+ Full human ownership check
++ Full human ownership check, explain-it-back for the core flow
 ```
 
 Go deeper only because the code or the change actually needs it — not because the template has more boxes to fill.
@@ -70,6 +70,7 @@ Skeleton (use the [Final Answer Structure](#final-answer-structure) headings, om
 ## What Could Go Wrong
 ## What Changed
 ## What Is Easy to Miss
+## Still Unknown
 ## Remember This
 ## You Should Understand These Before Moving On
 ## Can I Own This?
@@ -194,6 +195,7 @@ When a detailed response is warranted, use this order and skip whatever doesn't 
 ## What Could Go Wrong
 ## What Changed                              (if applicable)
 ## What Is Easy to Miss
+## Still Unknown                             (if relevant)
 ## Remember This
 ## You Should Understand These Before Moving On
 ## Can I Own This?

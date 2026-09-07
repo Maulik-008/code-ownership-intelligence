@@ -36,44 +36,24 @@ Can you actually confirm what you think is true? Check the code, the tests, the 
 ### Remember
 Strip away everything else — what's the one thing a developer actually needs to keep in their head about this? If you can't answer this, you haven't finished the research.
 
-## Think like the developer who wrote it
+## Decision memory
 
-For code whose reasoning matters, work through this chain instead of stopping at "what it does":
+AI-written code can work perfectly while the human has no idea why it's shaped the way it is. For a decision whose reasoning actually matters — not every line, just the ones a future change could get wrong — recover it in this shape:
 
 ```
-What?
- ↓
-How?
- ↓
-Why?
- ↓
-What other choices were possible?
- ↓
-Why was this choice used instead?
- ↓
-Who depends on it?
- ↓
-What happens if it changes?
- ↓
-What must stay true?
- ↓
-What should I remember?
+Decision        → what was actually built
+Why             → the reason it was built this way
+Evidence        → where that reason is confirmed (or "unknown")
+Alternatives    → what else could have been done instead
+Trade-off       → why this option won over the others
+What to remember → the one thing that matters going forward
 ```
 
-## Recover lost design thinking
+Fill it in by asking, in order: *What was chosen? What else could have been chosen? Why was this one preferred? What problem was it trying to avoid? Who depends on it today? What breaks if it changes?* Stop as soon as you have enough to answer "what to remember" — this is not a form to fill exhaustively.
 
-AI-written code can work perfectly while the human has no idea why it's shaped the way it is. Try to recover that context instead of leaving it lost:
+Look for the evidence in: older implementations of the same thing, git history and commit messages, tests (what the author thought was worth protecting), comments, related or similar features elsewhere in the codebase, old conditions that look oddly specific, previous bug fixes touching this area, and existing patterns the codebase already follows. A strange, specific-looking condition is very often a scar from a past incident rather than an arbitrary choice — worth checking history for before assuming either way.
 
-- Older implementations of the same thing
-- Git history and commit messages
-- Tests (what the author thought was worth protecting)
-- Comments
-- Related or similar features elsewhere in the codebase
-- Old conditions that look oddly specific
-- Previous bug fixes touching this area
-- Existing patterns the codebase already follows
-
-Try to answer: *"Why was this decision made?"* and, where possible, *"What problem was this decision trying to avoid?"* If the answer genuinely can't be found, say so — don't fill the gap with a guess.
+If the reasoning genuinely can't be found after looking, say so — don't fill the gap with a guess. The goal isn't historical curiosity; it's recovering reasoning the human never got to build themselves because AI wrote the code.
 
 ## Where to look (evidence sources)
 
@@ -105,3 +85,15 @@ When you can back a "why" up with evidence, name exactly where it came from (a t
 > "The code suggests this may exist for X, but I can't confirm it."
 
 A wrong confident answer is worse than an honest "unconfirmed" — it teaches the human something false about code they're about to own.
+
+The goal is not for the human to know everything. It's for the human to know: **what I know, what I don't know, why I don't know it, and where I'd look if I needed the answer.** When a real question stays open after looking, say so plainly instead of quietly dropping it:
+
+```
+## Still Unknown
+
+- Why this limit is set to 3 isn't documented anywhere.
+- Git history shows when this check was added, but not why.
+- Whether this is intentional needs business context we don't have.
+```
+
+Unknown is a fine answer. False confidence is not.

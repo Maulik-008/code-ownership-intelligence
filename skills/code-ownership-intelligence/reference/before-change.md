@@ -29,6 +29,8 @@ Find risks
       ↓
 Explain important decisions
       ↓
+What must NOT change?
+      ↓
 Human understanding check
       ↓
 AI starts the change
@@ -52,6 +54,19 @@ Do the "find / understand / trace" steps with [research-method.md](research-meth
 Answer only the ones that matter for this specific request. A one-line config change doesn't need all ten; a rewrite of a payment flow does.
 
 Don't scan the entire repository unless the change actually requires it — stay scoped to what the request touches plus its real dependencies.
+
+## What must NOT change
+
+Before the AI starts, say out loud what's off-limits — a boundary around the AI, not just a description of the present. Use whatever's relevant from: existing business rules, existing permissions, existing API behavior, existing retry behavior, existing data guarantees, existing workflows, existing side effects. In practice this is usually the same list as "rules that must stay true" (see [understanding-tools.md](understanding-tools.md)), just asked from the angle of "here's what you may not touch" instead of "here's how it works today."
+
+Skip this for trivial changes — a one-line config tweak doesn't need a boundary statement. Use it when the change is real enough that an AI could plausibly "fix" something nearby that wasn't part of the request.
+
+The before-change mental model, in short:
+
+```
+What are we changing?  →  What exists today?  →  What must stay the same?  →
+What is allowed to change?  →  What could break?  →  Human understands  →  AI changes
+```
 
 ## Sizing the response
 

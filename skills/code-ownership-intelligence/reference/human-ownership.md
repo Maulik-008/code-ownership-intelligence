@@ -22,6 +22,12 @@ Close important work with this — not a checkbox that pretends understanding is
 
 Keep it specific to the current work. Drop the items that don't apply — a small change might only need 2-3 of these.
 
+The sharpest way to test whether this list is real or theater:
+
+> **"If I had to change this six months from now, without AI, would I know where to start?"**
+
+If the honest answer is no, the check hasn't done its job yet — go back and close the gap, don't just note it. The Ownership Questions below are the fuller version of this same test.
+
 ## Ownership questions
 
 For important changes, ask questions instead of only handing over answers. The purpose is not to test the human — it's to find gaps in their understanding before those gaps turn into a production incident.
@@ -33,6 +39,7 @@ For important changes, ask questions instead of only handing over answers. The p
 - What old behavior must remain?
 - What changed, and why?
 - What could break?
+- Is there anything here you're still not sure about? (a real "I don't know" is a better answer than a guess)
 - Where would you start debugging this later?
 
 Pick one or two that matter most for this specific case — don't run through the whole list every time.
@@ -50,22 +57,25 @@ Ask a focused question
  ↓
 Let the human think
  ↓
+Human explains the behavior back in their own words
+ ↓
 Check the answer
  ↓
-Correct missing understanding
+Correct missing or wrong understanding
  ↓
 Remember
 ```
 
-Example:
+Two moves that both count as "asking a focused question":
 
-> Payment status is controlled by `PaymentService`, not by the frontend.
->
-> **"If the UI changed the status directly instead of going through PaymentService, what problem could that create?"**
+- A **specific question** about one risk or rule — "if the UI changed the status directly instead of going through PaymentService, what problem could that create?"
+- Asking them to **explain it back** — "in your own words, how does this flow work?" or "if you had to change this six months from now without me, where would you start?"
 
-Wait for the answer. If they name the real risk (status and reality drifting apart, no audit trail, backend re-deriving a different status later), confirm it and add anything they missed. If they miss it, explain the gap plainly — don't just move on.
+Other good prompts: "What do you think happens if this condition is false?" · "Why do you think this rule exists?" · "What old behavior do you think must stay unchanged?"
 
-Use this only when it adds real value: a rule that's easy to violate, an assumption that's easy to get backwards, a piece of shared code with a non-obvious blast radius. **Do not turn every small task into a quiz.** Most requests should just get a clear, direct answer.
+Wait for the actual answer before moving on. If they name the real risk (status and reality drifting apart, no audit trail, backend re-deriving a different status later), confirm it and add anything they missed. If they miss it or get it wrong, explain the gap plainly. **Don't treat "yes" or "makes sense" as proof of understanding** — if they can't say it back in their own words, the loop isn't done.
+
+Use this selectively, for things like: important architecture, business rules, risky logic, shared code, a non-obvious assumption, a genuinely difficult flow, an AI-generated change, behavior that would be easy to break, or a decision that matters for future maintenance. **Do not turn every small task into a quiz.** Most requests should just get a clear, direct answer.
 
 ## Memory: five things, not fifty
 

@@ -32,7 +32,7 @@ Every important area has a small number of rules that, if broken, cause real dam
 - A deleted user cannot create a new session.
 ```
 
-This list matters most: it's what the human needs to protect the next time they (or an AI) touch this area.
+This list matters most: it's what the human needs to protect the next time they (or an AI) touch this area. Before a change starts, this same list *is* the answer to "what must NOT change" — see [before-change.md](before-change.md).
 
 ## Easy to miss
 

@@ -16,17 +16,18 @@ AI can write code fast. That does not make the human who asked for it responsibl
 
 - Not a code review tool (it doesn't grade quality or hunt style issues).
 - Not a documentation generator (it doesn't describe files for their own sake).
-- Not a bug-finder (finding risk is a side effect, not the goal).
+- Not a bug-finder or test-plan generator (finding risk is a side effect, not the goal).
 - Not a report machine (most requests should end in a chat reply, not a file).
+- Not a checklist machine (the ownership check finds gaps — it doesn't prove understanding by itself).
 
 The goal is a human who can honestly say **"I can own this"** — not a longer document.
 
 ## Two modes
 
-**BEFORE CHANGE** — an AI is about to touch code. The key question: *"What am I about to let AI change?"*
+**BEFORE CHANGE** — an AI is about to touch code. The key question: *"What am I about to let AI change?"* Ends with a plain statement of what must **not** change.
 Full flow and questions: [reference/before-change.md](reference/before-change.md)
 
-**AFTER CHANGE** — an AI just changed code. The key question: *"Do I actually understand and own what AI just changed?"*
+**AFTER CHANGE** — an AI just changed code. The key question: *"Do I actually understand and own what AI just changed?"* Always checks whether AI changed more than was actually asked for.
 Full flow and questions: [reference/after-change.md](reference/after-change.md)
 
 If it's not obvious which one applies (someone just says "explain this file"), treat it as a light BEFORE CHANGE / understanding request — no change is pending, so skip the diff-specific parts and just build understanding.
@@ -67,6 +68,14 @@ Not every function needs this. Reach for these when the code is central, shared,
 
 Full definitions and examples: [reference/understanding-tools.md](reference/understanding-tools.md)
 
+## Explain top-down, not bottom-up
+
+Build the explanation in layers, high-level first — don't open with implementation detail before the human has the shape of the thing:
+
+**Level 1 — What is this?** The problem it solves. **Level 2 — How does it work?** The main pieces and flow. **Level 3 — Why this way?** The rules, decisions, and dependencies. **Level 4 — What can go wrong?** Failure paths, edge cases, blast radius.
+
+This is why the Final Answer Structure below goes in this order — resist starting a response at Level 3 or 4 just because that's where the interesting bug is.
+
 ## Decide the output — don't default to a report
 
 Most requests do **not** need a file. Ask: *"Will a file actually help more than a chat reply?"*
@@ -83,13 +92,13 @@ Scale of response, file naming, and templates for every format: [reference/outpu
 
 ## Be a thinking partner, not just a reporter
 
-Ask the human real questions when it helps, instead of only handing over answers — then check what they say and fill the gap:
+Ask the human real questions when it helps, instead of only handing over answers — then check what they say and fill the gap. The strongest version isn't a specific question at all, it's asking them to **explain it back**: "in your own words, how does this flow work?"
 
 - "Before you accept this, can you explain why this condition is required?"
 - "This service is used by three other flows. Want to check those before changing it?"
 - "If the UI changed this status directly instead of the backend, what could go wrong?"
 
-Use this only when it adds real value. Don't turn a small task into a quiz. Full pattern and the ownership check template: [reference/human-ownership.md](reference/human-ownership.md)
+A "yes" or "makes sense" is not proof they understood it — if they can't say it back in their own words, keep going. Use this only when it adds real value. Don't turn a small task into a quiz. Full pattern and the ownership check template: [reference/human-ownership.md](reference/human-ownership.md)
 
 ## Always close with: Can I own this?
 
@@ -101,6 +110,8 @@ End with a short, honest, specific list of gaps — not a checkbox that pretends
 2. ...
 3. ...
 ```
+
+The sharpest version of this test: *"If you had to change this six months from now, without AI, would you know where to start?"*
 
 ## Scale to the size of the ask
 
@@ -116,6 +127,7 @@ A one-function question doesn't need every section below. A real before/after re
 ## What Could Go Wrong
 ## What Changed              (if applicable)
 ## What Is Easy to Miss
+## Still Unknown             (if relevant)
 ## Remember This
 ## You Should Understand These Before Moving On
 ## Can I Own This?
