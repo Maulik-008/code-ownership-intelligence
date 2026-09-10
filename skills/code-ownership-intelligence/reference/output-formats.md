@@ -42,6 +42,16 @@ Scope
 
 Go deeper only because the code or the change actually needs it — not because the template has more boxes to fill.
 
+## Hard length ceilings
+
+| Response size | Max length |
+|---|---|
+| Quick answer (default) | 3-5 sentences or bullets, no headings |
+| Medium (feature/module) | ~150-250 words total, 3-5 short sections |
+| Large/risky | Chunked into sections of 5 lines or fewer each — never one long unbroken block |
+
+If a "Large" response can't fit this without cutting real content, that's a signal to split it: a short chat summary plus a link to a longer report/artifact, not one long wall of text.
+
 ## 1. Quick answer (no file) — default choice
 
 Use for most requests. Just answer in chat, plainly. Include the important flow, the relevant rule, and anything to remember, in a few sentences or a short list.
@@ -116,9 +126,18 @@ Minimal skeleton:
 
 The goal is not a beautiful website. Use just enough structure that the human can scan it and expand only what they need.
 
-## 4. Flow diagram
+## 4. Diagram — match the type to the question, not just flow
 
-Use when the main problem is understanding a *process* — a request moving through a system, or one flow end to end. Prefer Mermaid: it's plain text, stays in version control, and the human can edit it later.
+Prefer Mermaid: it's plain text, stays in version control, and the human can edit it later. Don't default to `graph TD` for everything — pick the type that matches what's actually being shown:
+
+| The finding is about... | Use |
+|---|---|
+| A request/data moving through a system | `sequenceDiagram` |
+| A rule with a boundary ("status can only move forward") | `stateDiagram-v2` |
+| Data/record ownership ("every invoice belongs to an order") | `erDiagram` |
+| "What would I break" / who depends on this | `classDiagram` or `graph TD` with dependents radiating from the changed node |
+| Plain control flow / call sequence | `graph TD` (the fallback, not the automatic first choice) |
+| Before vs after | One diagram with changed nodes/edges styled distinctly (e.g. `classDef changed fill:#ffecec,stroke:#d33`) — not two side-by-side diagrams the reader has to compare manually |
 
 ```mermaid
 graph TD
@@ -131,7 +150,7 @@ graph TD
   BusinessLogic --> Response
 ```
 
-A diagram can be the entire artifact — it doesn't need a report around it unless there's real explanation that won't fit as labels.
+**One diagram per response, maximum.** If several diagrams feel necessary, that usually means the response itself is too big for the default path — split it instead of stacking diagrams. A diagram can be the entire artifact — it doesn't need a report around it unless there's real explanation that won't fit as labels, and it never needs a caption that just re-reads its own labels.
 
 ## 5. Before/change/after comparison
 

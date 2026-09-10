@@ -1,6 +1,6 @@
 ---
 name: code-ownership-intelligence
-description: Helps a developer understand, question, remember, and take ownership of code that an AI agent is about to write or just changed — instead of blindly trusting it. Use before an AI starts changing unfamiliar code (learn current behavior, rules, and risks first) and right after an AI finishes a change (see what actually happened, what old behavior may have quietly broken, and what to remember). Also use for plain "explain this codebase / file / flow / feature" requests, and for building a mental model of an unfamiliar area. Triggers on "before you touch this, explain it", "what did you just change", "help me understand this code", "did this break anything else", "can I own this change", "walk me through this flow", "what will I break if I change this".
+description: Helps a developer understand, question, remember, and take ownership of code that an AI agent is about to write or just changed — instead of blindly trusting it. Use before an AI starts changing unfamiliar code (learn current behavior, rules, and risks first) and right after an AI finishes a change (see what actually happened, what old behavior may have quietly broken, and what to remember). Also use for plain "explain this codebase / file / flow / feature" requests, building a mental model of an unfamiliar area, and spaced-review check-ins ("what should I review today", "quiz me on <feature>"). Triggers on "before you touch this, explain it", "what did you just change", "help me understand this code", "did this break anything else", "can I own this change", "walk me through this flow", "what will I break if I change this", "what should I review today", "quiz me on this".
 argument-hint: "[before|after|explain] [file, folder, feature, flow, or commit]"
 ---
 
@@ -87,7 +87,30 @@ Most requests do **not** need a file. Ask: *"Will a file actually help more than
 
 **Small + useful + memorable beats large + complete + unread.**
 
+Whatever the format, the same delivery test applies: **a tired person skimming for 10 seconds should still walk away knowing the one thing that matters.** Lead with a one-sentence plain answer, let headings carry the takeaway on their own, keep every section to five lines or fewer, use at most one diagram, and close with a single "the one thing to remember" — never a summary that re-reads everything above it.
+
 Scale of response, file naming, and templates for every format: [reference/output-formats.md](reference/output-formats.md)
+
+## Agentic workflow — when to delegate vs. handle inline
+
+This skill can run two ways. Default to the first; only step up to the second when the size of the ask earns it.
+
+**Inline (default):** For a small or medium ask, just do the work yourself, following the sections above. No subagents, no extra overhead — most requests belong here.
+
+**Delegated (large or risky change only):** For the "Large or risky change" tier — money, auth, shared code, a rewrite, or anything the human explicitly wants a fuller review of — delegate to the specialist agents bundled with this plugin, in this order:
+
+```
+1. research-agent   → investigates, returns labeled findings (never a human-facing answer)
+2. diagram-agent    → given the findings, decides if a diagram earns its place + which type
+3. delivery-agent   → compresses findings (+ diagram) into the actual ADHD-friendly final answer
+4. memory-agent     → files the "one thing to remember" for spaced review; surfaces anything due
+```
+
+Each agent has one job and hands its output to the next — don't let any of them try to do another's job (e.g. research-agent should never write the final prose, delivery-agent should never go re-investigate). You, the orchestrator, decide scope and mode (before/after/explain) up front, run the chain, and are responsible for the final message actually reaching the human — the chain produces the content, you deliver it.
+
+Skip steps that don't apply: no diagram needed → skip diagram-agent and hand findings straight to delivery-agent. Full design rationale, failure modes, and why this order: [reference/agentic-workflow.md](reference/agentic-workflow.md)
+
+memory-agent's job (step 4) runs even for inline, non-delegated responses whenever a real "one thing to remember" was produced, and also on its own when the human asks "what should I review today" or similar. Full mechanics: [reference/remember-and-review.md](reference/remember-and-review.md)
 
 ## Be a thinking partner, not just a reporter
 

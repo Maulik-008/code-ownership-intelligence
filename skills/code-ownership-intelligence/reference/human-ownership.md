@@ -104,3 +104,12 @@ But the final "Remember This" the human actually reads should be short:
 ```
 
 Prefer **5 important things I should remember** over **50 things I need to remember**. If the list is growing past that, it means too much got included — cut it down to what's actually load-bearing.
+
+Better still, when the response is small (which is most of the time): don't even give five — give **one**. Close with a single line, not a section:
+
+```
+## The one thing to remember
+Payment status only moves forward. If you're tempted to reset it, don't — build a new record instead.
+```
+
+This is the sharpest form of the same idea — a summary that repeats every point already made isn't a takeaway, it's re-reading. Reserve the fuller 5-bullet "Remember This" card for genuinely large or risky changes where more than one fact is truly load-bearing; everything else should end on one sentence.

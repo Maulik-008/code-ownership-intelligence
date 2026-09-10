@@ -1,6 +1,6 @@
 # Code Ownership Intelligence
 
-A Claude Code skill/plugin that helps a human understand, question, and own code that an AI agent is about to change or just changed. See [skills/code-ownership-intelligence/SKILL.md](skills/code-ownership-intelligence/SKILL.md) for what it actually does.
+A Claude Code skill/plugin that helps a human understand, question, and own code that an AI agent is about to change or just changed. See [skills/code-ownership-intelligence/SKILL.md](skills/code-ownership-intelligence/SKILL.md) for what it actually does, or **[USAGE-GUIDE.md](USAGE-GUIDE.md) for exactly what to say and what you'll get back in every real situation.**
 
 This repo works two ways at once:
 - as a **plain skill** you can drop into any project or your own machine, or
@@ -114,6 +114,14 @@ code-ownership-intelligence/
 ├── skills/
 │   └── code-ownership-intelligence/
 │       ├── SKILL.md         # the actual skill — copy just this folder for Option A/B
-│       └── reference/       # research method, before/after flows, output templates
+│       └── reference/       # research method, before/after flows, output templates,
+│                             # agentic workflow design, spaced-review mechanics
+├── agents/                   # specialist subagents the skill delegates to for large/risky
+│   │                         # reviews — research, diagram, delivery, memory (see SKILL.md
+│   │                         # "Agentic workflow" section). Auto-discovered as plugin agents.
+│   ├── research-agent.md
+│   ├── diagram-agent.md
+│   ├── delivery-agent.md
+│   └── memory-agent.md
 └── README.md                 # this file
 ```
