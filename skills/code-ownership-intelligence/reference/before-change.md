@@ -70,11 +70,11 @@ What is allowed to change?  →  What could break?  →  Human understands  → 
 
 ## Sizing the response
 
-Most before-change checks are small. Default to a quick chat answer:
+Most before-change checks are small — a short Markdown file (unless the human picked "quick chat answer only" at Step 3), often just this much:
 
 - "This touches `PaymentService.charge()`. It's called from checkout and from the retry job — both would be affected. Today it treats a failed charge as final; there's no partial-refund path. Want me to check the retry job's assumptions before we change this?"
 
-Only escalate to a Markdown report or diagram when the area is genuinely large or tangled (many files, several flows, unclear ownership). See [output-formats.md](output-formats.md) for when and how, and how depth should scale with the size of the change.
+Only escalate to the fuller Markdown structure, a diagram, or a Deep explainer when the area is genuinely large or tangled (many files, several flows, unclear ownership). See [output-formats.md](output-formats.md) for when and how, and how depth should scale with the size of the change.
 
 ## Be a thinking partner here specifically
 
