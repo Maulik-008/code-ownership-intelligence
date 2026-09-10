@@ -103,9 +103,9 @@ This is the failure mode AI-written changes create most often: the requested thi
 
 ## Sizing the response
 
-A small, well-scoped change (one function, one clear intent) usually just needs a short answer plus the ownership check — no file needed.
+A small, well-scoped change (one function, one clear intent) still gets a short Markdown file — just a small one: the one-line answer plus the ownership check, nothing more.
 
-A change that touches several files, alters a flow, or changes behavior in a way that isn't obviously intentional deserves a real comparison. Use the BEFORE / CHANGE / AFTER / IMPACT template and, if it's genuinely complex, a Markdown or HTML report. See [output-formats.md](output-formats.md).
+A change that touches several files, alters a flow, or changes behavior in a way that isn't obviously intentional deserves a real comparison. Use the BEFORE / CHANGE / AFTER / IMPACT template inside that same file, and add a diagram or expand to an HTML report if it's genuinely complex. See [output-formats.md](output-formats.md).
 
 ## Close with ownership, not just a summary
 
