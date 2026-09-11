@@ -51,16 +51,16 @@ If it's not already obvious from your request, the skill asks — a short number
 
 ### Step 3 — How do you want it delivered? *(hard gate)*
 
-Before any research happens, the skill stops and asks — as real selectable options in the Claude Code terminal, not a question you'd have to type a reply to:
+Before any research happens, the skill stops and asks — as real checkboxes in the Claude Code terminal, not a question you'd have to type a reply to. **You can check more than one** — it's not an either/or:
 
 | Option | What you get |
 |---|---|
 | **Markdown file** *(recommended default)* | A small `.md` file — explanation, rules, flow — written with memory techniques baked in (mnemonics, named patterns, concrete failure scenarios) so it's actually easy to recall later, not just accurate. Chat gets a short pointer to it. |
-| **Quick chat answer only** | A few plain sentences, no file — for something genuinely small or throwaway. |
+| **Quick chat answer only** | A few plain sentences, no file — for something genuinely small or throwaway. Checked alongside another option, it just means "give me the fast answer now, and still build the other thing." |
 | **Deep explainer (HTML)** | One rich, self-contained artifact: Background → Intuition (toy examples) → Code walkthrough → a 5-question interactive quiz. For a large or tangled area worth really sitting with. |
 | **Interactive walkthrough** | A small tool you drive yourself — step through a migration, an execution, or a multi-step flow and watch real state change, instead of reading about it. Offered only when the request actually fits that shape. |
 
-Your pick always wins. Nothing gets built until you've answered.
+Your picks always win — check one for a single deliverable, or several if you want, say, both a Markdown file to keep and a quick answer right now. Nothing gets built until you've answered.
 
 ### Step 4 — Research, then build
 
@@ -80,7 +80,7 @@ You say: *"before you touch this, explain the refund logic in PaymentService"*
 
 1. **Mode** — before-change, inferred from your phrasing. No need to ask.
 2. **Scope** — you already named it (`PaymentService`, refund logic), so no menu.
-3. **Output type (gate)** — you get four options in the terminal. You pick "Markdown file."
+3. **Output type (gate)** — you get four checkboxes in the terminal. You check just "Markdown file."
 4. **Research** — the skill traces how refunds work today, who calls this code, what business rules protect it, what would break if it changed. It writes `CODEBASE-UNDERSTANDING.md` and drops a two-sentence pointer in chat.
 5. **Ownership close** — the file ends with *"You should understand these before I start"* — three specific things, not a generic list. Maybe it asks: *"This function is also called by the retry job — want to check that path before we touch it?"*
 

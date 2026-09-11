@@ -76,7 +76,7 @@ What am I about to let you change in PaymentService?
 **What happens internally:**
 - Mode: **BEFORE CHANGE**
 - If scope isn't obvious, you'll get a short numbered menu (file? feature? flow? branch?) — answer with a number or just restate what you meant.
-- Before any research starts, you'll get one quick pick — Markdown file, quick chat answer, deep HTML explainer, or a tool you drive yourself. Answer that first; nothing gets built until you do.
+- Before any research starts, you'll get a quick pick with checkboxes — Markdown file, quick chat answer, deep HTML explainer, or a tool you drive yourself. Check one or several; answer that first, nothing gets built until you do.
 - Small/normal change → handled inline, no subagents, fast.
 - Large/risky change (money, auth, a rewrite) → the full agent chain runs: research-agent digs in, diagram-agent adds a picture only if the shape is genuinely relational, delivery-agent compresses it into the final answer.
 
@@ -135,11 +135,13 @@ What does this function actually do?
 - Treated as a light BEFORE CHANGE / pure-understanding pass — same research method, no diff-specific steps (no "what changed," no "did AI go beyond scope").
 - Explained top-down: what it is → how it works → why it's built this way → what can go wrong. Never starts with implementation detail before you have the shape of the thing.
 
-**What you get back:** first, a quick question — how do you want this delivered? (Markdown file, quick chat answer, deep HTML explainer, or a tool you drive yourself) — then, once you pick:
+**What you get back:** first, a quick checkbox question — how do you want this delivered? (Markdown file, quick chat answer, deep HTML explainer, tool you drive yourself — check as many as you actually want) — then, once you pick, it builds every format you checked from the same research pass:
 - **Markdown file (the recommended default):** chat gets a 1-3 sentence pointer to it, plus an optional offer afterward to build a quick recall quiz from it. For one function or a small question, it's a short file — the one-line answer plus "Remember This," no padding. For a real feature or flow, a short mental map, the rules that must stay true, and what's easy to misread on a first pass. For a large, tangled area, a fuller `CODEBASE-UNDERSTANDING.md`/`FLOW-UNDERSTANDING.md`, still chunked into short sections, with a diagram where one flow is genuinely being traced.
-- **Quick chat answer:** a few plain sentences, no file — for something small enough it's not worth saving.
+- **Quick chat answer:** a few plain sentences, no file — for something small enough it's not worth saving. Checked alongside another format, it's just the fast version delivered first, while the fuller thing is still being built.
 - **Deep explainer:** one rich HTML artifact — background, a worked toy example, a code walkthrough, and a 5-question quiz built in.
 - **Interactive walkthrough:** a small tool you drive yourself — step through a migration or execution and watch real state change, instead of reading about it. Only offered when the request is actually a stateful, multi-step process.
+
+Want both a file to keep and a quick answer right now? Check both boxes — that's exactly what multi-select is for.
 
 **You're done when:** you could explain the flow back in your own words. If asked to try, actually try — a "makes sense" doesn't count as understanding here.
 

@@ -1,8 +1,8 @@
 # Output formats
 
-**Ask first, using the terminal options tool.** Before anything below applies, the human picks the output type at Step 3 in [SKILL.md](../SKILL.md) via `AskUserQuestion` — this is a hard gate, not a default to silently assume. Everything in this file describes what to build *after* that pick, keyed to their choice.
+**Ask first, using the terminal options tool.** Before anything below applies, the human picks the output type(s) at Step 3 in [SKILL.md](../SKILL.md) via `AskUserQuestion` with `multiSelect: true` — this is a hard gate, not a default to silently assume, and it's a checkbox pick, not a single choice: the human can select more than one format from the same research pass. Everything in this file describes what to build *after* that pick, keyed to whichever one(s) they chose.
 
-**Absent a different pick, every response from this skill is a Markdown file.** The only open question is how long that file is and whether it also needs a diagram or an HTML artifact — not whether a file gets created at all, unless the human explicitly chose the "quick chat answer only" option. Chat carries a short pointer to the file, never the full explanation.
+**Absent a different pick, every response from this skill is a Markdown file.** The only open question is how long that file is and whether it also needs a diagram or an HTML artifact — not whether a file gets created at all, unless the human explicitly chose (only) the "quick chat answer only" option. Chat carries a short pointer to the file, never the full explanation. **If more than one format was checked**, build each one from the same research — see [SKILL.md Step 3/4](../SKILL.md) for how to handle "quick chat answer only" combined with another pick.
 
 If a diagram explains something, embed it in the file — that section of the file can be one diagram and nothing else, but the file still exists. Don't reach for HTML unless the area genuinely needs visual structure a Markdown diagram can't give it.
 
