@@ -143,7 +143,7 @@ To auto-enable it for every teammate who opens a project, add to that project's 
 
 ### After installing
 
-Nothing else to configure. It auto-triggers on phrases like *"explain this before you touch it"* or *"what did you just change"*. You can also invoke it by name — `/code-ownership-intelligence` (Option A/B) or `/code-ownership-intelligence:code-ownership-intelligence` (Option C).
+Nothing else to configure. It auto-triggers on phrases like *"explain this before you touch it"* or *"what did you just change"*. You can also invoke it by name — `/understand` (Option A/B) or `/code-ownership-intelligence:understand` (Option C).
 
 ---
 

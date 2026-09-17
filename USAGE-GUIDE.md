@@ -230,7 +230,7 @@ Pick one, from [README.md](README.md):
 - **Every project on your machine:** copy the same folder into `~/.claude/skills/`.
 - **Share with a team / install anywhere:** use it as a plugin — `/plugin marketplace add` + `/plugin install`, see README for the full steps.
 
-No configuration after that — it auto-triggers on the phrases above, or you can invoke it directly with `/code-ownership-intelligence`.
+No configuration after that — it auto-triggers on the phrases above, or you can invoke it directly with `/understand`.
 
 ---
 

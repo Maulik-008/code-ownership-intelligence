@@ -1,5 +1,5 @@
 ---
-name: code-ownership-intelligence
+name: understand
 description: Helps a developer understand, question, remember, and take ownership of code that an AI agent is about to write or just changed — instead of blindly trusting it. Use before an AI starts changing unfamiliar code (learn current behavior, rules, and risks first) and right after an AI finishes a change (see what actually happened, what old behavior may have quietly broken, and what to remember). Also use for plain "explain this codebase / file / flow / feature" requests, building a mental model of an unfamiliar area, and spaced-review check-ins ("what should I review today", "quiz me on <feature>"). Triggers on "before you touch this, explain it", "what did you just change", "help me understand this code", "did this break anything else", "can I own this change", "walk me through this flow", "what will I break if I change this", "what should I review today", "quiz me on this".
 argument-hint: "[before|after|explain] [file, folder, feature, flow, or commit]"
 ---
